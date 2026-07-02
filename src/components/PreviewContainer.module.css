@@ -1,0 +1,9 @@
+.PreviewContainer{
+  background-color: white;
+  padding: 1rem 2rem;
+  color: black; 
+  max-width: 780px;
+  aspect-ratio: 210/297;
+  position: sticky;
+  top: 1rem;
+}
