@@ -4,18 +4,34 @@ import { Header } from "./components/Header";
 import { FormContainer } from "./components/FormContainer";
 import { PreviewContainer } from "./components/PreviewContainer";
 
-
+interface GeneralInfo {
+  fullName: string;
+  jobTitle: string;
+  email: string;
+  phone: string;
+  domicile: string;
+  summary: string;
+};
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [GIData, setGIData] = useState<GeneralInfo>(
+    {
+      fullName: '',
+      jobTitle: '',
+      email: '',
+      phone: '',
+      domicile: '',
+      summary: ''
+    }
+  )
 
   return (
     <>
-      <Header/>      
+      <Header />
       <div className="main-container">
-        <FormContainer/>
-        <PreviewContainer/>
-      </div>      
+        <FormContainer GIdata={GIData} UpdateGIdata={setGIData} />
+        <PreviewContainer />
+      </div>
     </>
   )
 }

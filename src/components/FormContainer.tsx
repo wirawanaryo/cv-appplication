@@ -4,11 +4,24 @@ import {GIForm} from "./forms/GIForm";
 import { EduForm } from "./forms/EduForm";
 import { SkillsForm } from "./forms/SkillsForm";
 
+interface GeneralInfoType {
+  fullName: string;
+  jobTitle: string;
+  email: string;
+  phone: string;
+  domicile: string;
+  summary: string;
+};
 
-export function FormContainer() {
+interface GIformProps {
+  GIdata: GeneralInfoType;
+  UpdateGIdata: React.Dispatch<React.SetStateAction<GeneralInfoType>>;  
+}
+
+export function FormContainer({GIdata, UpdateGIdata}:GIformProps) {
   return <div className={styles.FormContainer}>
     <h1>Input Your Data</h1>
-    <GIForm />
+    <GIForm GIdata={GIdata} UpdateGIdata={UpdateGIdata} />
     <WorkExpForm />
     <EduForm />
     <SkillsForm />

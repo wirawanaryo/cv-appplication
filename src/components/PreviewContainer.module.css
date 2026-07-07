@@ -1,9 +1,42 @@
 .PreviewContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: white;
   padding: 1rem 2rem;
   color: black; 
   max-width: 780px;
+  /* min-width: max(60%, 600px); */
   aspect-ratio: 210/297;
   position: sticky;
   top: 1rem;
+  padding: 3rem
+}
+
+.GIsection{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+h2{
+  margin-top: 0.3rem;  
+}
+h3{
+  margin-top: -0.3rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+p{
+  font-size: 18px;
+  text-align: justify;  
+}
+.GIdetails{
+  text-align: center;
+}
+hr{
+  width: 100%;  
+  height: 3px; 
+  background-color: black;
+  margin-top: 0.5rem;
 }

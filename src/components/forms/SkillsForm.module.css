@@ -4,3 +4,42 @@
   font-family: Courier;
   padding: 1rem;
 }
+
+.EduForm{
+  border: 1px solid darkgrey;
+  background-color: #161a1b;
+  font-family: Courier;
+  padding: 1rem;
+}
+
+hr{
+  margin-top: 1rem;
+}
+.SkillsForm input, .SkillsForm textarea{
+  padding-left: 0.5rem;
+  width: 320px;
+}
+.DeleteButton{
+  width: 2rem;
+  height: 2rem;
+}
+.FormHeader{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.FormInputHolders{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+.FormAreaHolders{
+  display: flex;
+  justify-content: space-between;  
+  margin-top: 1rem;
+}
+.formButtons{
+  display: flex;
+  gap: 2rem;
+}

@@ -1,6 +1,20 @@
 import styles from "./GIForm.module.css";
 
-export function GIForm() {
+interface GeneralInfoType {
+  fullName: string;
+  jobTitle: string;
+  email: string;
+  phone: string;
+  domicile: string;
+  summary: string;
+};
+
+interface GIformProps {
+  GIdata: GeneralInfoType;
+  UpdateGIdata: React.Dispatch<React.SetStateAction<GeneralInfoType>>;  
+}
+
+export function GIForm({GIdata, UpdateGIdata}:GIformProps) {
   return <div className={styles.GIForm}>
     <form>
       <h2>General Information</h2>
@@ -57,7 +71,7 @@ export function GIForm() {
         <textarea
           id={styles.summary}
           name="summary"
-          rows={5}
+          rows={3}
           placeholder="Tell us about yourself..."
         ></textarea>
       </div>
