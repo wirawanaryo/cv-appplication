@@ -11,22 +11,31 @@ interface GeneralInfoType {
 
 interface GIformProps {
   GIdata: GeneralInfoType;
-  UpdateGIdata: React.Dispatch<React.SetStateAction<GeneralInfoType>>;  
+  UpdateGIdata: React.Dispatch<React.SetStateAction<GeneralInfoType>>;
 }
 
-export function GIForm({GIdata, UpdateGIdata}:GIformProps) {
+export function GIForm({ GIdata, UpdateGIdata }: GIformProps) {
 
-  function handleChange(e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    UpdateGIdata( prev => ({
-      ...prev,
-      [e.target.name]:e.target.value,
-    }))
-  }
+  // function handleChange(e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+  //   UpdateGIdata( prev => ({
+  //     ...prev,
+  //     [e.target.name]:e.target.value,
+  //   }))
+  // }
+
+  console.log(GIdata);
 
   function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(GIdata); 
-    //add code to send the data to preview
+    const form = new FormData(e.currentTarget);
+    UpdateGIdata({
+      fullName: form.get('fullName') as string,
+      jobTitle: form.get('jobTitle') as string,
+      email: form.get('email') as string,
+      phone: form.get('phone') as string,
+      domicile: form.get('domicile') as string,
+      summary: form.get('summary') as string
+    })    
   }
 
   return <div className={styles.GIForm}>
@@ -38,8 +47,6 @@ export function GIForm({GIdata, UpdateGIdata}:GIformProps) {
           type="text"
           id='fullName'
           name="fullName"
-          value={GIdata?.fullName || ''}
-          onChange={handleChange}
           placeholder="John Doe"
         />
       </div>
@@ -49,8 +56,6 @@ export function GIForm({GIdata, UpdateGIdata}:GIformProps) {
           type="text"
           id='jobTitle'
           name="jobTitle"
-          value={GIdata?.jobTitle || ''}
-          onChange={handleChange}
           placeholder="Software Developer"
         />
       </div>
@@ -60,8 +65,6 @@ export function GIForm({GIdata, UpdateGIdata}:GIformProps) {
           type="email"
           id='email'
           name="email"
-          value={GIdata.email}
-          onChange={handleChange}
           placeholder="myemail@google.com"
         />
       </div>
@@ -73,9 +76,7 @@ export function GIForm({GIdata, UpdateGIdata}:GIformProps) {
           name="phone"
           placeholder="777888999"
           pattern="[0-9]*"
-          value={GIdata.phone}
           onInvalid={(e) => e.currentTarget.setCustomValidity('Should be numbers!')}
-          onChange={handleChange}
         />
       </div>
       <div className={styles.GIInputHolders}>
@@ -84,8 +85,6 @@ export function GIForm({GIdata, UpdateGIdata}:GIformProps) {
           type="text"
           id='domicile'
           name="domicile"
-          value={GIdata.domicile}
-          onChange={handleChange}
           placeholder="Firaga Street"
         />
       </div>
@@ -95,8 +94,6 @@ export function GIForm({GIdata, UpdateGIdata}:GIformProps) {
           id='summary'
           name="summary"
           rows={3}
-          value={GIdata.summary}
-          onChange={handleChange}
           placeholder="Tell us about yourself..."
         ></textarea>
       </div>
