@@ -15,15 +15,31 @@ interface GIformProps {
 }
 
 export function GIForm({GIdata, UpdateGIdata}:GIformProps) {
+
+  function handleChange(e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    UpdateGIdata( prev => ({
+      ...prev,
+      [e.target.name]:e.target.value,
+    }))
+  }
+
+  function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
+    e.preventDefault();
+    console.log(GIdata); 
+    //add code to send the data to preview
+  }
+
   return <div className={styles.GIForm}>
-    <form>
+    <form onSubmit={handleSubmit}>
       <h2>General Information</h2>
       <div className={styles.GIInputHolders}>
         <label htmlFor="fullName">Full Name</label>
         <input
           type="text"
-          id={styles.fullname}
+          id='fullName'
           name="fullName"
+          value={GIdata?.fullName || ''}
+          onChange={handleChange}
           placeholder="John Doe"
         />
       </div>
@@ -31,47 +47,56 @@ export function GIForm({GIdata, UpdateGIdata}:GIformProps) {
         <label htmlFor="jobTitle">Job Title</label>
         <input
           type="text"
-          id={styles.fullname}
-          name="fullname"
+          id='jobTitle'
+          name="jobTitle"
+          value={GIdata?.jobTitle || ''}
+          onChange={handleChange}
           placeholder="Software Developer"
         />
       </div>
       <div className={styles.GIInputHolders}>
-        <label htmlFor="Email">Email</label>
+        <label htmlFor="email">Email</label>
         <input
           type="email"
-          id={styles.Email}
-          name="Email"
+          id='email'
+          name="email"
+          value={GIdata.email}
+          onChange={handleChange}
           placeholder="myemail@google.com"
         />
       </div>
       <div className={styles.GIInputHolders}>
-        <label htmlFor="Phone">Phone</label>
+        <label htmlFor="phone">Phone</label>
         <input
           type="tel"
-          id={styles.Phone}
-          name="Phone"
+          id='phone'
+          name="phone"
           placeholder="777888999"
           pattern="[0-9]*"
+          value={GIdata.phone}
           onInvalid={(e) => e.currentTarget.setCustomValidity('Should be numbers!')}
-          onChange={(e )=> e.currentTarget.setCustomValidity('')}
+          onChange={handleChange}
         />
       </div>
       <div className={styles.GIInputHolders}>
-        <label htmlFor="Domicile">Domicile</label>
+        <label htmlFor="domicile">Domicile</label>
         <input
           type="text"
-          id={styles.Domicile}
-          name="Domicile"
+          id='domicile'
+          name="domicile"
+          value={GIdata.domicile}
+          onChange={handleChange}
           placeholder="Firaga Street"
         />
       </div>
       <div className={styles.GIInputAreaHolders}>
         <label htmlFor="summary">Summary</label>
         <textarea
-          id={styles.summary}
+          id='summary'
           name="summary"
           rows={3}
+          value={GIdata.summary}
+          onChange={handleChange}
           placeholder="Tell us about yourself..."
         ></textarea>
       </div>
