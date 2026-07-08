@@ -98,7 +98,7 @@ export function GIForm({ GIdata, UpdateGIdata }: GIformProps) {
         ></textarea>
       </div>
       <br></br>
-      <button type="submit">Submit</button>
+      <button type="submit">Update</button>
     </form>
   </div>
 }
