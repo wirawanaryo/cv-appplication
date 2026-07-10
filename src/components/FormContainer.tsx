@@ -12,17 +12,27 @@ interface GeneralInfoType {
   domicile: string;
   summary: string;
 };
+interface WorkInfoType {
+  id : string;
+  company: string;
+  position: string;
+  startdate: string;
+  enddate: string;  
+  summary: string;
+};
 
-interface GIformProps {
+interface formProps {
   GIdata: GeneralInfoType;
-  UpdateGIdata: React.Dispatch<React.SetStateAction<GeneralInfoType>>;  
+  UpdateGIdata: React.Dispatch<React.SetStateAction<GeneralInfoType>>;
+  WEData: WorkInfoType[];
+  UpdateWEData : React.Dispatch<React.SetStateAction<WorkInfoType[]>>;
 }
 
-export function FormContainer({GIdata, UpdateGIdata}:GIformProps) {
+export function FormContainer({GIdata, UpdateGIdata, WEData, UpdateWEData}:formProps) {
   return <div className={styles.FormContainer}>
     <h1>Input Your Data</h1>
     <GIForm GIdata={GIdata} UpdateGIdata={UpdateGIdata} />
-    <WorkExpForm />
+    <WorkExpForm WEData={WEData} UpdateWEData={UpdateWEData}/>
     <EduForm />
     <SkillsForm />
   </div>

@@ -1,7 +1,22 @@
+import type React from "react";
 import styles from "./WorkExpForm.module.css";
 
-function MainForm() {
-  return <form className={styles.MainForm}>
+interface WorkInfoType {
+  id : string;
+  company: string;
+  position: string;
+  startdate: string;
+  enddate: string;
+  summary: string;
+};
+
+interface WEformProps {
+  WEData: WorkInfoType[];
+  UpdateWEData: React.Dispatch<React.SetStateAction<WorkInfoType[]>>;
+}
+
+function MainForm({ WEData, UpdateWEData }: WEformProps) {
+  return <form className={styles.MainForm} id="WEForm">
     <div className={styles.FormHeader}>
       <h2>Company 1</h2>
       <button type="button" className={styles.DeleteButton}>🗑</button>
@@ -53,14 +68,28 @@ function MainForm() {
   </form>
 }
 
-export function WorkExpForm() {
+export function WorkExpForm({ WEData, UpdateWEData }: WEformProps) {
+  function handleAddMore() {
+    WEData.push({
+      id: crypto.randomUUID(),
+      company: '',
+      position: '',
+      startdate: '',
+      enddate: '',
+      summary: ''
+    });
+    console.log('Add more button clicked')
+    console.log(WEData)
+  }
+  
+
   return <div className={styles.WorkExpForm}>
     <h2>Work Experience</h2>
     <hr></hr>
-    <MainForm />          
+    <MainForm WEData={WEData} UpdateWEData={UpdateWEData} />
     <div className={styles.formButtons}>
-      <button type="button">Update Data</button>
-      <button type="button">Add More</button>
-    </div>      
+      <button type="submit" form="WEForm">Update Data</button>
+      <button type="button" onClick={handleAddMore}>Add More</button>
+    </div>
   </div>
 }

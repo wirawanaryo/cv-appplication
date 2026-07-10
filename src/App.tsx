@@ -12,6 +12,14 @@ interface GeneralInfo {
   domicile: string;
   summary: string;
 };
+interface WorkInfo {
+  id : string;
+  company: string;
+  position: string;
+  startdate: string;
+  enddate: string;  
+  summary: string;
+};
 
 function App() {
   const [GIData, setGIData] = useState<GeneralInfo>(
@@ -24,13 +32,28 @@ function App() {
       summary: ''
     }
   )
+  const [WEData, setWEData] = useState<WorkInfo[]>([
+    {
+      id: crypto.randomUUID(),
+      company: '',
+      position: '',
+      startdate: '',
+      enddate: '',
+      summary: ''
+    }
+  ])
 
   return (
     <>
       <Header />
       <div className="main-container">
-        <FormContainer GIdata={GIData} UpdateGIdata={setGIData} />
-        <PreviewContainer />
+        <FormContainer 
+          GIdata={GIData} 
+          UpdateGIdata={setGIData} 
+          WEData={WEData}
+          UpdateWEData={setWEData}
+        />
+        <PreviewContainer GIdata={GIData}/>
       </div>
     </>
   )
