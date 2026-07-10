@@ -22,10 +22,13 @@ interface MainformProps {
 }
 
 function MainForm({ WEData, UpdateWEData, data, index }: MainformProps) {
+  function deleteForm(id:string) {
+    UpdateWEData(prev=>prev.filter(WEdat => WEdat.id !== id))
+  }
   return <form className={styles.MainForm} id="WEForm">
     <div className={styles.FormHeader}>
       <h2>Company {index+1}</h2>
-      <button type="button" className={styles.DeleteButton}>🗑</button>
+      <button type="button" className={styles.DeleteButton} onClick={()=>deleteForm(data.id)}>🗑</button>
     </div>
     <div className={styles.FormInputHolders}>
       <label htmlFor="Company">Company</label>
