@@ -20,6 +20,14 @@ interface WorkInfo {
   enddate: string;  
   summary: string;
 };
+interface EduInfo {
+  id : string;
+  school: string;
+  degree: string;
+  startdate: string;
+  enddate: string;  
+  details: string;
+};
 
 function App() {
   const [GIData, setGIData] = useState<GeneralInfo>(
@@ -42,6 +50,16 @@ function App() {
       summary: ''
     }
   ])
+  const [EduData, setEduData] = useState<EduInfo[]>([
+    {
+      id: crypto.randomUUID(),
+      school: '',
+      degree: '',
+      startdate: '',
+      enddate: '',
+      details: ''
+    }
+  ])
 
   return (
     <>
@@ -52,8 +70,10 @@ function App() {
           UpdateGIdata={setGIData} 
           WEData={WEData}
           UpdateWEData={setWEData}
+          EduData={EduData}
+          UpdateEduData={setEduData}
         />
-        <PreviewContainer GIdata={GIData} WEData={WEData}/>
+        <PreviewContainer GIdata={GIData} WEData={WEData} EduData={EduData}/>
       </div>
     </>
   )

@@ -24,7 +24,7 @@ interface MainformProps {
 
 function MainForm({ WEData, UpdateWEData, data, index }: MainformProps) {
   function deleteForm(id: string) {
-    UpdateWEData(prev => prev.filter(WEdat => WEdat.id !== id))
+    UpdateWEData(prev => prev.filter(WEdata => WEdata.id !== id))
   }
 
   function handlechange(id:string, value:string, target:string) {

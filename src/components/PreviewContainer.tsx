@@ -9,12 +9,19 @@ interface GeneralInfoType {
   domicile: string;
   summary: string;
 };
-
+interface EduInfoType {
+  id : string;
+  school: string;
+  degree: string;
+  startdate: string;
+  enddate: string;  
+  details: string;
+};
 interface formProps {
   GIdata: GeneralInfoType;
   WEData: WorkInfoType[];
+  EduData: EduInfoType[];
 }
-
 interface WorkInfoType {
   id: string;
   company: string;
@@ -23,12 +30,14 @@ interface WorkInfoType {
   enddate: string;
   summary: string;
 };
-
 interface GIsectionProps {
   GIdata: GeneralInfoType;
 }
 interface WEsectionProps {
   WEdata: WorkInfoType[];
+}
+interface EduSectionProps {
+  EduData: EduInfoType[];
 }
 
 
@@ -64,10 +73,28 @@ function WEsection({ WEdata }: WEsectionProps) {
     ))}
   </div>
 }
+function EduSection({ EduData }: EduSectionProps) {
+  return <div className={styles.EduSection}>
+    <h1>Education</h1>
+    <hr></hr>
+    {EduData.map((Edu) => (
+      <div key={Edu.id} className={styles.EduContainer}>
+        <h2>{Edu.school === ''? "School Name" : Edu.school}</h2>
+        <div className={styles.degreeContainer}>
+          <p>{Edu.degree === ''? "Degree" : Edu.degree}</p>
+          <span>{Edu.startdate === ''? "Period" : `${Edu.startdate}  → ${Edu.enddate}`}</span>
+        </div>
+        <p>{Edu.details === ''? "School Description" : Edu.details}</p>
+      </div>
+    ))}
+  </div>
+}
 
-export function PreviewContainer({ GIdata, WEData }: formProps) {
+
+export function PreviewContainer({ GIdata, WEData, EduData }: formProps) {
   return <div className={styles.PreviewContainer}>
     <GIsection GIdata={GIdata} />
     <WEsection WEdata={WEData} />
+    <EduSection EduData={EduData}/>
   </div>
 }

@@ -20,20 +20,30 @@ interface WorkInfoType {
   enddate: string;  
   summary: string;
 };
+interface EduInfoType {
+  id : string;
+  school: string;
+  degree: string;
+  startdate: string;
+  enddate: string;  
+  details: string;
+};
 
 interface formProps {
   GIdata: GeneralInfoType;
   UpdateGIdata: React.Dispatch<React.SetStateAction<GeneralInfoType>>;
   WEData: WorkInfoType[];
   UpdateWEData : React.Dispatch<React.SetStateAction<WorkInfoType[]>>;
+  EduData: EduInfoType[];
+  UpdateEduData : React.Dispatch<React.SetStateAction<EduInfoType[]>>
 }
 
-export function FormContainer({GIdata, UpdateGIdata, WEData, UpdateWEData}:formProps) {
+export function FormContainer({GIdata, UpdateGIdata, WEData, UpdateWEData, EduData, UpdateEduData}:formProps) {
   return <div className={styles.FormContainer}>
     <h1>Input Your Data</h1>
     <GIForm GIdata={GIdata} UpdateGIdata={UpdateGIdata} />
     <WorkExpForm WEData={WEData} UpdateWEData={UpdateWEData}/>
-    <EduForm />
+    <EduForm EduData={EduData} UpdateEduData={UpdateEduData}/>
     <SkillsForm />
   </div>
 }
