@@ -17,11 +17,6 @@ interface EduInfoType {
   enddate: string;  
   details: string;
 };
-interface formProps {
-  GIdata: GeneralInfoType;
-  WEData: WorkInfoType[];
-  EduData: EduInfoType[];
-}
 interface WorkInfoType {
   id: string;
   company: string;
@@ -30,6 +25,17 @@ interface WorkInfoType {
   enddate: string;
   summary: string;
 };
+interface SkillInfoType {
+  id : string;
+  skillname: string;  
+};
+
+interface formProps {
+  GIdata: GeneralInfoType;
+  WEData: WorkInfoType[];
+  EduData: EduInfoType[];
+  SkillData: SkillInfoType[];
+}
 interface GIsectionProps {
   GIdata: GeneralInfoType;
 }
@@ -38,6 +44,9 @@ interface WEsectionProps {
 }
 interface EduSectionProps {
   EduData: EduInfoType[];
+}
+interface SkillSectionProps {
+  SkillData: SkillInfoType[];
 }
 
 
@@ -89,12 +98,19 @@ function EduSection({ EduData }: EduSectionProps) {
     ))}
   </div>
 }
+function SkillSection({ SkillData }:SkillSectionProps) {
+  return <div className={styles.SkillSection}>
+    <h1>Skills</h1>
+    <hr></hr>
+  </div>  
+}
 
 
-export function PreviewContainer({ GIdata, WEData, EduData }: formProps) {
+export function PreviewContainer({ GIdata, WEData, EduData, SkillData }: formProps) {
   return <div className={styles.PreviewContainer}>
     <GIsection GIdata={GIdata} />
     <WEsection WEdata={WEData} />
     <EduSection EduData={EduData}/>
+    <SkillSection SkillData={SkillData}/>
   </div>
 }
