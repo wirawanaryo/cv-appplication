@@ -41,7 +41,7 @@ function MainForm({ EduData, UpdateEduData, data, index }: MainformProps) {
   return <form className={styles.MainForm}>
     <div className={styles.FormHeader}>
       <h2>School {index + 1}</h2>
-      <button type="button" className={styles.DeleteButton}>🗑</button>
+      <button type="button" className={styles.DeleteButton} onClick={() => deleteForm(data.id)}>🗑</button>
     </div>
     <div className={styles.FormInputHolders}>
       <label htmlFor="school">School</label>
@@ -51,6 +51,7 @@ function MainForm({ EduData, UpdateEduData, data, index }: MainformProps) {
         name="school"
         defaultValue={data.school}
         placeholder="Big Bad University"
+        onChange={(e)=>handlechange(data.id, e.target.value, e.target.name)}  
       />
     </div>
     <div className={styles.FormInputHolders}>
@@ -61,6 +62,7 @@ function MainForm({ EduData, UpdateEduData, data, index }: MainformProps) {
         name="degree"
         defaultValue={data.degree}
         placeholder="Computer Science"
+        onChange={(e)=>handlechange(data.id, e.target.value, e.target.name)}  
       />
     </div>
     <div className={styles.FormInputHolders}>
@@ -70,6 +72,7 @@ function MainForm({ EduData, UpdateEduData, data, index }: MainformProps) {
         id={styles.StartDate}
         name="startdate"
         defaultValue={data.startdate}
+        onChange={(e)=>handlechange(data.id, e.target.value, e.target.name)}  
       />
     </div>
     <div className={styles.FormInputHolders}>
@@ -79,6 +82,7 @@ function MainForm({ EduData, UpdateEduData, data, index }: MainformProps) {
         id={styles.EndDate}
         name="enddate"
         defaultValue={data.enddate}
+        onChange={(e)=>handlechange(data.id, e.target.value, e.target.name)}  
       />
     </div>
     <div className={styles.FormAreaHolders}>
@@ -89,6 +93,7 @@ function MainForm({ EduData, UpdateEduData, data, index }: MainformProps) {
         rows={3}
         defaultValue={data.details}
         placeholder="GPA and Such"
+        onChange={(e)=>handlechange(data.id, e.target.value, e.target.name)}  
       ></textarea>
     </div>
     <hr></hr>
@@ -109,14 +114,26 @@ export function EduForm({ EduData, UpdateEduData }: EduformProps) {
   function handleSubmit() {
     UpdateEduData(TempEduData);
   }
+  function handleAddMore() {
+    setTempEduData(prev => [
+      ...prev, {
+        id: crypto.randomUUID(),
+        school: '',
+        degree : '',
+        startdate: '',
+        enddate: '',
+        details: ''
+      },
+    ])    
+  }
 
   return <div className={styles.EduForm}>
     <h2>Education</h2>
     <hr></hr>
     <MainFormContainer EduData={TempEduData} UpdateEduData={setTempEduData} />
     <div className={styles.formButtons}>
-      <button type="button">Update Data</button>
-      <button type="button">Add More</button>
+      <button type="button" onClick={handleSubmit}>Update Data</button>
+      <button type="button" onClick={handleAddMore}>Add More</button>
     </div>
   </div>
 }
