@@ -19,6 +19,28 @@
   flex-direction: column;
   align-items: center;
 }
+.WEsection{
+  margin: 1rem 0 1rem 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.EXPcontainer{  
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+.positionContainer{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.positionContainer span{
+  font-size: small;
+}
 h2{
   margin-top: 0.3rem;  
 }

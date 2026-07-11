@@ -53,7 +53,7 @@ function App() {
           WEData={WEData}
           UpdateWEData={setWEData}
         />
-        <PreviewContainer GIdata={GIData}/>
+        <PreviewContainer GIdata={GIData} WEData={WEData}/>
       </div>
     </>
   )

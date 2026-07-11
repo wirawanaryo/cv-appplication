@@ -10,62 +10,82 @@ interface WorkInfoType {
   enddate: string;
   summary: string;
 };
-
 interface WEformProps {
   WEData: WorkInfoType[];
   UpdateWEData: React.Dispatch<React.SetStateAction<WorkInfoType[]>>;
 }
-interface MainformProps {  
+interface MainformProps {
+  WEData: WorkInfoType[];
   UpdateWEData: React.Dispatch<React.SetStateAction<WorkInfoType[]>>;
   data: WorkInfoType;
   index: number;
 }
 
-function MainForm({ UpdateWEData, data, index }: MainformProps) {
-  function deleteForm(id:string) {
-    UpdateWEData(prev=>prev.filter(WEdat => WEdat.id !== id))
+
+function MainForm({ WEData, UpdateWEData, data, index }: MainformProps) {
+  function deleteForm(id: string) {
+    UpdateWEData(prev => prev.filter(WEdat => WEdat.id !== id))
   }
+
+  function handlechange(id:string, value:string, target:string) {
+    UpdateWEData(WEData.map(WE => {
+      if (WE.id === id) {
+        return {
+          ...WE,
+          [target]: value
+        };
+      } else {
+        return WE;
+      }
+    }))
+  }
+
+
   return <form className={styles.MainForm} id="WEForm">
     <div className={styles.FormHeader}>
-      <h2>Company {index+1}</h2>
-      <button type="button" className={styles.DeleteButton} onClick={()=>deleteForm(data.id)}>🗑</button>
+      <h2>Company {index + 1}</h2>
+      <button type="button" className={styles.DeleteButton} onClick={() => deleteForm(data.id)}>🗑</button>
     </div>
     <div className={styles.FormInputHolders}>
-      <label htmlFor="Company">Company</label>
+      <label htmlFor="company">Company</label>
       <input
         type="text"
         id={styles.Company}
-        name="Company"
+        name="company"
         defaultValue={data.company}
-        placeholder="Big Bad Corp"
+        placeholder="Big Bad Corp"  
+        onChange={(e)=>handlechange(data.id, e.target.value, e.target.name)}      
       />
     </div>
     <div className={styles.FormInputHolders}>
-      <label htmlFor="Position">Position</label>
+      <label htmlFor="position">Position</label>
       <input
         type="text"
         id={styles.Position}
-        name="Position"
+        name="position"
         defaultValue={data.position}
         placeholder="Manager"
+        onChange={(e)=>handlechange(data.id, e.target.value, e.target.name)} 
       />
     </div>
     <div className={styles.FormInputHolders}>
-      <label htmlFor="StartDate">Start Date</label>
+      <label htmlFor="startdate">Start Date</label>
       <input
         type="date"
         id={styles.StartDate}
-        name="StartDate"
+        name="startdate"
         defaultValue={data.startdate}
+        onChange={(e)=>handlechange(data.id, e.target.value, e.target.name)} 
       />
     </div>
     <div className={styles.FormInputHolders}>
-      <label htmlFor="EndDate">End Date</label>
+      <label htmlFor="endDate">End Date</label>
       <input
         type="date"
         id={styles.EndDate}
-        name="EndDate"
+        name="enddate"
         defaultValue={data.enddate}
+        onChange={(e)=>handlechange(data.id, e.target.value, e.target.name)} 
       />
     </div>
     <div className={styles.FormAreaHolders}>
@@ -76,6 +96,7 @@ function MainForm({ UpdateWEData, data, index }: MainformProps) {
         rows={3}
         defaultValue={data.summary}
         placeholder="Tell us about it..."
+        onChange={(e)=>handlechange(data.id, e.target.value, e.target.name)} 
       ></textarea>
     </div>
     <hr></hr>
@@ -85,14 +106,15 @@ function MainForm({ UpdateWEData, data, index }: MainformProps) {
 function MainFormContainer({ WEData, UpdateWEData }: WEformProps) {
   return <div id="WEformContainer">
     {WEData.map((WE, index) => (
-      <MainForm key={WE.id} UpdateWEData={UpdateWEData} data={WE} index={index} />
+      <MainForm key={WE.id} WEData={WEData} UpdateWEData={UpdateWEData} data={WE} index={index} />
     ))}
   </div>
 }
 
 export function WorkExpForm({ WEData, UpdateWEData }: WEformProps) {
+  const [TempWEData, setTempWEData] = useState<WorkInfoType[]>(WEData)  
   function handleAddMore() {
-    UpdateWEData(prev => [
+    setTempWEData(prev => [
       ...prev, {
         id: crypto.randomUUID(),
         company: '',
@@ -101,29 +123,21 @@ export function WorkExpForm({ WEData, UpdateWEData }: WEformProps) {
         enddate: '',
         summary: ''
       },
-    ])
-    // WEData.push({
-    //   id: crypto.randomUUID(),
-    //   company: '',
-    //   position: '',
-    //   startdate: '',
-    //   enddate: '',
-    //   summary: ''
-    // });
-    // console.log('Add more button clicked')    
+    ])    
   }
-  console.log(WEData)
-  function handleSubmit() {
-    
+  
+  console.log(TempWEData)
+  function handleSubmit() {    
+    UpdateWEData(TempWEData);
   }
 
 
   return <div className={styles.WorkExpForm}>
     <h2>Work Experience</h2>
     <hr></hr>
-    <MainFormContainer WEData={WEData} UpdateWEData={UpdateWEData} />
+    <MainFormContainer WEData={TempWEData} UpdateWEData={setTempWEData} />
     <div className={styles.formButtons}>
-      <button type="submit" form="WEForm">Update Data</button>
+      <button type="button" onClick={handleSubmit}>Update Data</button>
       <button type="button" onClick={handleAddMore}>Add More</button>
     </div>
   </div>
