@@ -85,7 +85,7 @@ export function GIForm({ GIdata, UpdateGIdata }: GIformProps) {
           type="text"
           id='domicile'
           name="domicile"
-          placeholder="Firaga Street"
+          placeholder="John Street"
         />
       </div>
       <div className={styles.GIInputAreaHolders}>

@@ -1,4 +1,5 @@
 import type React from "react";
+import { useState } from 'react'
 import styles from "./WorkExpForm.module.css";
 
 interface WorkInfoType {
@@ -14,14 +15,13 @@ interface WEformProps {
   WEData: WorkInfoType[];
   UpdateWEData: React.Dispatch<React.SetStateAction<WorkInfoType[]>>;
 }
-interface MainformProps {
-  WEData: WorkInfoType[];
+interface MainformProps {  
   UpdateWEData: React.Dispatch<React.SetStateAction<WorkInfoType[]>>;
   data: WorkInfoType;
   index: number;
 }
 
-function MainForm({ WEData, UpdateWEData, data, index }: MainformProps) {
+function MainForm({ UpdateWEData, data, index }: MainformProps) {
   function deleteForm(id:string) {
     UpdateWEData(prev=>prev.filter(WEdat => WEdat.id !== id))
   }
@@ -85,7 +85,7 @@ function MainForm({ WEData, UpdateWEData, data, index }: MainformProps) {
 function MainFormContainer({ WEData, UpdateWEData }: WEformProps) {
   return <div id="WEformContainer">
     {WEData.map((WE, index) => (
-      <MainForm key={WE.id} WEData={WEData} UpdateWEData={UpdateWEData} data={WE} index={index} />
+      <MainForm key={WE.id} UpdateWEData={UpdateWEData} data={WE} index={index} />
     ))}
   </div>
 }
@@ -110,8 +110,11 @@ export function WorkExpForm({ WEData, UpdateWEData }: WEformProps) {
     //   enddate: '',
     //   summary: ''
     // });
-    // console.log('Add more button clicked')
-    // console.log(WEData)
+    // console.log('Add more button clicked')    
+  }
+  console.log(WEData)
+  function handleSubmit() {
+    
   }
 
 
