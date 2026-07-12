@@ -40,7 +40,7 @@ function MainForm({SkillData, UpdateSkillData, data, index}:MainformProps) {
         type="text"
         id={styles.SkillName}
         name="skillname"
-        placeholder="Skill Name"
+        placeholder={`Skill Name ${index+1}`}
         onChange={(e)=>handlechange(data.id, e.target.value, e.target.name)} 
       />
       <button type="button" className={styles.DeleteButton} onClick={() => deleteForm(data.id)}>🗑</button> 
