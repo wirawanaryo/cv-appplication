@@ -104,7 +104,7 @@ function SkillSection({ SkillData }: SkillSectionProps) {
     <hr></hr>
     <div className={styles.SkillContainer}>
       {SkillData.map((Skill) => (
-        <span>•{"\u2003"}{Skill.skillname ===''? 'Skill': Skill.skillname }</span>        
+        <span key={Skill.id}>•{"\u2003"}{Skill.skillname ===''? 'Skill': Skill.skillname }</span>        
       ))}
       <span>•</span>
     </div>

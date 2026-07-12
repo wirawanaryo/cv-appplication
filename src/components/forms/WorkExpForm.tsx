@@ -50,7 +50,7 @@ function MainForm({ WEData, UpdateWEData, data, index }: MainformProps) {
       <label htmlFor="company">Company</label>
       <input
         type="text"
-        id='{styles.Company}'
+        id={styles.Company}
         name="company"
         defaultValue={data.company}
         placeholder="Big Bad Corp"  
