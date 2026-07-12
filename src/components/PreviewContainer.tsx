@@ -10,11 +10,11 @@ interface GeneralInfoType {
   summary: string;
 };
 interface EduInfoType {
-  id : string;
+  id: string;
   school: string;
   degree: string;
   startdate: string;
-  enddate: string;  
+  enddate: string;
   details: string;
 };
 interface WorkInfoType {
@@ -26,8 +26,8 @@ interface WorkInfoType {
   summary: string;
 };
 interface SkillInfoType {
-  id : string;
-  skillname: string;  
+  id: string;
+  skillname: string;
 };
 
 interface formProps {
@@ -72,12 +72,12 @@ function WEsection({ WEdata }: WEsectionProps) {
     <hr></hr>
     {WEdata.map((WE) => (
       <div key={WE.id} className={styles.EXPcontainer}>
-        <h2>{WE.company === ''? "Company Name" : WE.company}</h2>
+        <h2>{WE.company === '' ? "Company Name" : WE.company}</h2>
         <div className={styles.positionContainer}>
-          <p>{WE.position === ''? "Position" : WE.position}</p>
-          <span>{WE.startdate === ''? "Period" : `${WE.startdate}  → ${WE.enddate}`}</span>
+          <p>{WE.position === '' ? "Position" : WE.position}</p>
+          <span>{WE.startdate === '' ? "Period" : `${WE.startdate}  → ${WE.enddate}`}</span>
         </div>
-        <p>{WE.summary === ''? "Work Description" : WE.summary}</p>
+        <p>{WE.summary === '' ? "Work Description" : WE.summary}</p>
       </div>
     ))}
   </div>
@@ -88,21 +88,27 @@ function EduSection({ EduData }: EduSectionProps) {
     <hr></hr>
     {EduData.map((Edu) => (
       <div key={Edu.id} className={styles.EduContainer}>
-        <h2>{Edu.school === ''? "School Name" : Edu.school}</h2>
+        <h2>{Edu.school === '' ? "School Name" : Edu.school}</h2>
         <div className={styles.degreeContainer}>
-          <p>{Edu.degree === ''? "Degree" : Edu.degree}</p>
-          <span>{Edu.startdate === ''? "Period" : `${Edu.startdate}  → ${Edu.enddate}`}</span>
+          <p>{Edu.degree === '' ? "Degree" : Edu.degree}</p>
+          <span>{Edu.startdate === '' ? "Period" : `${Edu.startdate}  → ${Edu.enddate}`}</span>
         </div>
-        <p>{Edu.details === ''? "School Description" : Edu.details}</p>
+        <p>{Edu.details === '' ? "School Description" : Edu.details}</p>
       </div>
     ))}
   </div>
 }
-function SkillSection({ SkillData }:SkillSectionProps) {
+function SkillSection({ SkillData }: SkillSectionProps) {
   return <div className={styles.SkillSection}>
     <h1>Skills</h1>
     <hr></hr>
-  </div>  
+    <div className={styles.SkillContainer}>
+      {SkillData.map((Skill) => (
+        <span>•{"\u2003"}{Skill.skillname ===''? 'Skill': Skill.skillname }</span>        
+      ))}
+      <span>•</span>
+    </div>
+  </div>
 }
 
 
@@ -110,7 +116,7 @@ export function PreviewContainer({ GIdata, WEData, EduData, SkillData }: formPro
   return <div className={styles.PreviewContainer}>
     <GIsection GIdata={GIdata} />
     <WEsection WEdata={WEData} />
-    <EduSection EduData={EduData}/>
-    <SkillSection SkillData={SkillData}/>
+    <EduSection EduData={EduData} />
+    <SkillSection SkillData={SkillData} />
   </div>
 }

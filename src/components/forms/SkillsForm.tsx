@@ -39,8 +39,9 @@ function MainForm({SkillData, UpdateSkillData, data, index}:MainformProps) {
       <input
         type="text"
         id={styles.SkillName}
-        name="SkillName"
+        name="skillname"
         placeholder="Skill Name"
+        onChange={(e)=>handlechange(data.id, e.target.value, e.target.name)} 
       />
       <button type="button" className={styles.DeleteButton} onClick={() => deleteForm(data.id)}>🗑</button> 
     </div>     
@@ -75,7 +76,7 @@ export function SkillsForm({ SkillData, UpdateSkillData }: SkillformProps) {
     <hr></hr>
     <MainFormContainer SkillData={TempSkillData} UpdateSkillData={setTempSkillData} />       
     <div className={styles.formButtons}>
-      <button type="button">Update Data</button>
+      <button type="button" onClick={handleSubmit}>Update Data</button>
       <button type="button" onClick={handleAddMore}>Add More</button>
     </div>        
   </div>

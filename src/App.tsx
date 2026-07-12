@@ -28,6 +28,10 @@ interface EduInfo {
   enddate: string;  
   details: string;
 };
+interface SkillInfo {
+  id : string;
+  skillname: string;  
+};
 
 function App() {
   const [GIData, setGIData] = useState<GeneralInfo>(
@@ -60,6 +64,12 @@ function App() {
       details: ''
     }
   ])
+  const [SkillData, setSkillData] = useState<SkillInfo[]>([
+    {
+      id: crypto.randomUUID(),
+      skillname: ''      
+    }
+  ])
 
   return (
     <>
@@ -72,8 +82,10 @@ function App() {
           UpdateWEData={setWEData}
           EduData={EduData}
           UpdateEduData={setEduData}
+          SkillData={SkillData}
+          UpdateSkillData={setSkillData}
         />
-        <PreviewContainer GIdata={GIData} WEData={WEData} EduData={EduData}/>
+        <PreviewContainer GIdata={GIData} WEData={WEData} EduData={EduData} SkillData={SkillData}/>
       </div>
     </>
   )
