@@ -50,10 +50,11 @@ function MainForm({ WEData, UpdateWEData, data, index }: MainformProps) {
       <label htmlFor="company">Company</label>
       <input
         type="text"
-        id={styles.Company}
+        id="company"
         name="company"
         defaultValue={data.company}
         placeholder="Big Bad Corp"  
+        autoComplete='organization'
         onChange={(e)=>handlechange(data.id, e.target.value, e.target.name)}      
       />
     </div>
@@ -61,7 +62,7 @@ function MainForm({ WEData, UpdateWEData, data, index }: MainformProps) {
       <label htmlFor="position">Position</label>
       <input
         type="text"
-        id={styles.Position}
+        id="position"
         name="position"
         defaultValue={data.position}
         placeholder="Manager"
@@ -72,17 +73,17 @@ function MainForm({ WEData, UpdateWEData, data, index }: MainformProps) {
       <label htmlFor="startdate">Start Date</label>
       <input
         type="date"
-        id={styles.StartDate}
+        id="startdate"
         name="startdate"
         defaultValue={data.startdate}
         onChange={(e)=>handlechange(data.id, e.target.value, e.target.name)} 
       />
     </div>
     <div className={styles.FormInputHolders}>
-      <label htmlFor="endDate">End Date</label>
+      <label htmlFor="enddate">End Date</label>
       <input
         type="date"
-        id={styles.EndDate}
+        id="enddate"
         name="enddate"
         defaultValue={data.enddate}
         onChange={(e)=>handlechange(data.id, e.target.value, e.target.name)} 
@@ -91,7 +92,7 @@ function MainForm({ WEData, UpdateWEData, data, index }: MainformProps) {
     <div className={styles.FormAreaHolders}>
       <label htmlFor="summary">Summary</label>
       <textarea
-        id={styles.summary}
+        id="summary"
         name="summary"
         rows={3}
         defaultValue={data.summary}

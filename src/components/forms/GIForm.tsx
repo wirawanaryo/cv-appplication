@@ -66,6 +66,7 @@ export function GIForm({ GIdata, UpdateGIdata }: GIformProps) {
           id='email'
           name="email"
           placeholder="myemail@google.com"
+          autoComplete="email"
         />
       </div>
       <div className={styles.GIInputHolders}>
@@ -76,6 +77,7 @@ export function GIForm({ GIdata, UpdateGIdata }: GIformProps) {
           name="phone"
           placeholder="777888999"
           pattern="[0-9]*"
+          autoComplete='tel'
           onInvalid={(e) => e.currentTarget.setCustomValidity('Should be numbers!')}
         />
       </div>

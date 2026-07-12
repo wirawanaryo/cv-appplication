@@ -47,7 +47,7 @@ function MainForm({ EduData, UpdateEduData, data, index }: MainformProps) {
       <label htmlFor="school">School</label>
       <input
         type="text"
-        id={styles.SchoolName}
+        id="school"
         name="school"
         defaultValue={data.school}
         placeholder="Big Bad University"
@@ -58,7 +58,7 @@ function MainForm({ EduData, UpdateEduData, data, index }: MainformProps) {
       <label htmlFor="degree">Degree</label>
       <input
         type="text"
-        id={styles.Degree}
+        id="degree"
         name="degree"
         defaultValue={data.degree}
         placeholder="Computer Science"
@@ -69,7 +69,7 @@ function MainForm({ EduData, UpdateEduData, data, index }: MainformProps) {
       <label htmlFor="startdate">Start Date</label>
       <input
         type="date"
-        id={styles.StartDate}
+        id="startdate"
         name="startdate"
         defaultValue={data.startdate}
         onChange={(e)=>handlechange(data.id, e.target.value, e.target.name)}  
@@ -79,7 +79,7 @@ function MainForm({ EduData, UpdateEduData, data, index }: MainformProps) {
       <label htmlFor="enddate">End Date</label>
       <input
         type="date"
-        id={styles.EndDate}
+        id="enddate"
         name="enddate"
         defaultValue={data.enddate}
         onChange={(e)=>handlechange(data.id, e.target.value, e.target.name)}  
@@ -88,7 +88,7 @@ function MainForm({ EduData, UpdateEduData, data, index }: MainformProps) {
     <div className={styles.FormAreaHolders}>
       <label htmlFor="details">Details</label>
       <textarea
-        id={styles.Details}
+        id="details"
         name="details"
         rows={3}
         defaultValue={data.details}
